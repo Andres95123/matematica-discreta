@@ -58,8 +58,16 @@ class Entrega {
         BiPredicate<Integer, Integer> p,
         Predicate<Integer> q,
         Predicate<Integer> r) {
-
-      return false; // TO DO
+      // Aplicando ley de implicación queda: ∀x,y. !P(x,y) || (Q(x) ^ R(y))
+      for (int i=0; i<universe.length; i++) {
+        for (int j=0; j<universe.length; j++) {
+          boolean proposicion = !p.test(universe[i],universe[j]) || (q.test(universe[i]) && r.test(universe[j];
+          if (!proposicion) {
+            return false;
+          }
+        }
+      }
+      return true; //si se llega aquí, no se ha encontrado un caso donde no se cumpla
     }
 
     /*
