@@ -8,6 +8,8 @@ import java.util.function.Predicate;
 import java.util.Set;
 
 /* DDDDDDDDDDDDDDDDDDDDDDDDDDÇÇÇÇÇÇÇ
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    
 
  * Aquesta entrega consisteix en implementar tots els mètodes annotats amb el comentari "// TO DO".
  *
