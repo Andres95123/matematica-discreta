@@ -261,7 +261,12 @@ class Entrega {
      * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
      */
     static boolean exercici1(int[] a, int[][] p) {
-      return false; // TO DO
+      for (int i=0; i<p.length; i++) { //recorrido de conjuntos de 'p'
+        if (!Arrays.asList(a).containsAll(Arrays.asList(p[i])) { 
+          return false; //si 'a' no contiene algún conjunto de 'p', devuelve falso
+        } 
+      }
+      return true; 
     }
 
     /*
