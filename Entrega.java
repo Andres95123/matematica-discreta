@@ -76,7 +76,7 @@ class Entrega {
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
       
       //Aplicamos ley de implicación y queda ∃!x. ∀y. !Q(y) || P(x)
-      int contadorx;
+      //int contadorx;
       
       //Mirar 1 a 1 las x
       //Mirar que todas las preposiciones con y sean ciertas
@@ -106,18 +106,18 @@ class Entrega {
       
         return true;
        */
-      for (int j=0; j<universe.length; j++) { //recorrido para todo y
-          int contadorNumeroX = 0; //contador de veces que existe una x para cada y
-          for (int i=0; i<universe.length; i++) { //recorrido para todo x
+      for (int j=0; j<universe.length; j++) { //recorrido para todo 'y'
+          int contadorNumeroX = 0; //contador de veces que existe una 'x' para cada 'y'
+          for (int i=0; i<universe.length; i++) { //recorrido para todo 'x'
             if (!q.test(j) || p.test(i)) { 
-              contadorNumeroX++; //si la proposición es verdad, existe una x más
+              contadorNumeroX++; //si la proposición es verdad, existe una 'x' más para esa 'y'
             }
           }
-        if (contadorNumeroX!=1) { //si para alguna y no existe solo una x, falso
+        if (contadorNumeroX!=1) { //si para alguna 'y' no existe solo una 'x', falso
             return false;
         }
       }
-      //fin de bucle -> no se ha encontrado x que no exista una única vez, en cada iteración de y
+      //fin de bucle -> no se ha encontrado 'x' que no exista una única vez, en cada iteración de 'y'
       return true;
     }
 
