@@ -74,6 +74,40 @@ class Entrega {
      * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
+      
+      //Aplicamos ley de implicación y queda ∃!x. ∀y. !Q(y) || P(x)
+      int contadorx;
+      
+      //Mirar 1 a 1 las x
+      //Mirar que todas las preposiciones con y sean ciertas
+      //Contar que solo haya 1 unica x
+      for(int i=0;i<universe.length;i++){
+        int contadory=0;
+        for(int j=0;j<universe.length;j++){
+      
+          boolean proposicion = !q.test(j) || p.test(i);
+          //Si la proposicion es cierta, sumamos 1 al contador
+          if (proposicion)
+          {
+            contadory++;
+          }
+      
+        }
+        
+        
+        if (contadory=universe.length){
+        contadorx++;
+        }
+        
+        
+      }
+      
+      if (contadorx == 1){
+      
+        return true;
+      
+      }
+      
       return false; // TO DO
     }
 
