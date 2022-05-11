@@ -59,8 +59,8 @@ class Entrega {
         Predicate<Integer> q,
         Predicate<Integer> r) {
       // Aplicando ley de implicación queda: ∀x,y. !P(x,y) || (Q(x) ^ R(y))
-      for (int i=0; i<universe.length; i++) {
-        for (int j=0; j<universe.length; j++) {
+      for (int i=0; i<universe.length; i++) { //recorrido de 'x'
+        for (int j=0; j<universe.length; j++) { //para cada 'x' fijada, recorre todas las 'y'
           boolean proposicion = !p.test(universe[i],universe[j]) || (q.test(universe[i]) && r.test(universe[j];
           if (!proposicion) {
             return false;
@@ -106,14 +106,17 @@ class Entrega {
       
         return true;
        */
+      
+      
+      //Aplicando ley de implicación queda ∃!x. ∀y. !Q(y) || P(x)
       for (int j=0; j<universe.length; j++) { //recorrido para todo 'y'
           int contadorNumeroX = 0; //contador de veces que existe una 'x' para cada 'y'
           for (int i=0; i<universe.length; i++) { //recorrido para todo 'x'
             if (!q.test(j) || p.test(i)) { 
-              contadorNumeroX++; //si la proposición es verdad, existe una 'x' más para esa 'y'
+              contadorNumeroX++; //si es verdad, existe una 'x' más para esa 'y'
             }
           }
-        if (contadorNumeroX!=1) { //si para alguna 'y' no existe solo una 'x', falso
+        if (contadorNumeroX!=1) { //si para alguna 'y' no existe exactamente una 'x', falso
             return false;
         }
       }
@@ -137,7 +140,7 @@ class Entrega {
           //miramos para el conjunto 'y' fijado si y contiene a alguno de todos los 'x'
            yPerteneceAX = yPerteneceAX || Arrays.asList(universe[i]).containsAll(Arrays.asList(universe[j]));
         }
-        if (!yPerteneceAX) yPerteneceAXParaTodoY = false; //si algun 'y' no pertenece a ningún 'x'
+        if (!yPerteneceAX) yPerteneceAXParaTodoY = false; //si algún 'y' no pertenece a ningún 'x'
       }
       return !yPerteneceAXParaTodoY;
     }
@@ -146,7 +149,18 @@ class Entrega {
      * És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
      */
     static boolean exercici4(int[] universe, int n) {
-      return false; // TO DO
+      for (int i=0; i<universe.length; i++) { //recorrido de todos los 'x'
+        int numY = 0;
+        for (int j=0; j<universe.length; j++) { //recorrido de todas las 'y'
+          if ((universe[i]*universe[j])%n == 1) { //si x·y ≡ 1 (mod n)...
+            numY++; //se ha encontrado una 'y' para una x concreta
+          }
+        }
+        if (numY != 1) { //fin de recorrido, se mira si existe una única 'y'
+          return false; //si no existe una 'y' o no es única para alguna x, false
+        }
+      }
+      return true;
     }
 
     /*
