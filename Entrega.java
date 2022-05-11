@@ -266,7 +266,7 @@ class Entrega {
           return false; //si 'a' no contiene algún conjunto de 'p', devuelve falso
         } 
       }
-      return true; 
+      return true; //llega aquí si 'a' contiene todo conjunto de 'p'
     }
 
     /*
@@ -303,7 +303,32 @@ class Entrega {
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
 
     static int exercici4(int[] dom, int[] codom, Function<Integer, Integer> f) {
-      return -1; // TO DO
+      int[] imagenes = new int[codom.length];
+      for (int i=0; i<dom.length; i++) { //crea el conjunto imagen de dom
+        imagenes[i] = f.apply(dom[i]);
+      }
+      
+       // COMIENZO INYECTIVIDAD
+      int valor = INJECTIVE; //asumimos inyectividad y buscamos un contraejemplo
+      for (int i=0; i<imagenes.length; i++) { //recorrido de conjunto imagen
+        int apariciones = 0; //veces que aparece una imagen en el conjunto imagen
+        for (int j=0; j<imagenes.length; j++) {
+          //para cada imagen cuenta el número de veces que aparece
+          if (imagenes[i] == imagenes[j]) apariciones++;
+        }
+        //mínimo aparece una vez, así que apariciones >= 1. Si apariciones > 1 no inyectiva
+        if (apariciones > 1) valor = NOTHING_SPECIAL;
+      }
+      
+      // COMIENZO EHXHAUSTIVIDAD
+      
+      if ( Arrays.asList(imagenes).containsAll(Arrays.asList(codom)) ) {
+        //si imagenes contiene todos los valores de codom -> exhaustiva (e imagenes=codom)
+        // (no se usa equals porque puede haber imágenes iguales para entradas distintas)
+        valor =+ SURJECTIVE;
+      }
+      // FIN EXHAUSTIVIDAD
+      return valor;
     }
 
     /*
