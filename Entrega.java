@@ -128,7 +128,18 @@ class Entrega {
      * que cada un d'ells està ordenat de menor a major.
      */
     static boolean exercici3(int[][] universe) {
-      return false; // TO DO
+      int filas = universe.length;
+      int columnas = universe[0].length;
+      booleano yPerteneceAXParaTodoY = true; 
+      for (int i=0; i<filas; i++) { //fijamos conjunto 'y'
+        boolean yPerteneceAX = false;
+        for (int j=0; j<columnas; j++) { //recorremos todos los conjuntos 'x' para cada 'y'
+          //miramos para el conjunto 'y' fijado si y contiene a alguno de todos los 'x'
+           yPerteneceAX = yPerteneceAX || Arrays.asList(universe[i]).containsAll(Arrays.asList(universe[j]));
+        }
+        if (!yPerteneceAX) yPerteneceAXParaTodoY = false; //si algun 'y' no pertenece a ningún 'x'
+      }
+      return !yPerteneceAXParaTodoY;
     }
 
     /*
