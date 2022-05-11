@@ -8,8 +8,7 @@ import java.util.function.Predicate;
 import java.util.Set;
 
 /* DDDDDDDDDDDDDDDDDDDDDDDDDDÇÇÇÇÇÇÇ
-    XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    
+AAAAAAAAAAAAAAAAAAAAAAA
 
  * Aquesta entrega consisteix en implementar tots els mètodes annotats amb el comentari "// TO DO".
  *
@@ -373,3 +372,5 @@ class Entrega {
 }
 
 // vim: set textwidth=100 shiftwidth=2 expandtab :
+
+//si
