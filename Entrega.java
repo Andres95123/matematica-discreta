@@ -81,7 +81,7 @@ class Entrega {
       //Mirar 1 a 1 las x
       //Mirar que todas las preposiciones con y sean ciertas
       //Contar que solo haya 1 unica x
-      for(int i=0;i<universe.length;i++){
+      /* for(int i=0;i<universe.length;i++){
         int contadory=0;
         for(int j=0;j<universe.length;j++){
       
@@ -105,10 +105,20 @@ class Entrega {
       if (contadorx == 1){
       
         return true;
-      
+       */
+      for (int j=0; j<universe.length; j++) { //recorrido para todo y
+          int contadorNumeroX = 0; //contador de veces que existe una x para cada y
+          for (int i=0; i<universe.length; i++) { //recorrido para todo x
+            if (!q.test(j) || p.test(i)) { 
+              contadorNumeroX++; //si la proposición es verdad, existe una x más
+            }
+          }
+        if (contadorNumeroX!=1) { //si para alguna y no existe solo una x, falso
+            return false;
+        }
       }
-      
-      return false; // TO DO
+      //fin de bucle -> no se ha encontrado x que no exista una única vez, en cada iteración de y
+      return true;
     }
 
     /*
