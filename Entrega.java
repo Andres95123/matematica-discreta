@@ -150,7 +150,7 @@ class Entrega {
      */
     static boolean exercici4(int[] universe, int n) {
       for (int i=0; i<universe.length; i++) { //recorrido de todos los 'x'
-        int numY = 0;
+        int numY = 0; //numero de 'y' para cada 'x'
         for (int j=0; j<universe.length; j++) { //recorrido de todas las 'y'
           if ((universe[i]*universe[j])%n == 1) { //si x·y ≡ 1 (mod n)...
             numY++; //se ha encontrado una 'y' para una x concreta
@@ -284,6 +284,12 @@ class Entrega {
      * que `y` pertany a `codom` i que tant `dom` com `codom` també estàn ordenats de menor a major.
      */
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
+      
+      int pos = 0;
+      for (int i=0; i<dom.length; i++) {
+        if (f.apply(i) == y) pos = i;
+      }
+      
       return new int[]{}; // TO DO
     }
 
