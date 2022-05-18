@@ -284,13 +284,17 @@ class Entrega {
      * que `y` pertany a `codom` i que tant `dom` com `codom` també estàn ordenats de menor a major.
      */
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
-      
-      int pos = 0;
+      //como máximo el conjunto antiimagen tendrá = tamaño que dom (ej: funcion constante)
+      int[] antiImagen = new int[dom.length];
+      int cardinalAntiImagen = 0;
       for (int i=0; i<dom.length; i++) {
-        if (f.apply(i) == y) pos = i;
-      }
-      
-      return new int[]{}; // TO DO
+        if (f.apply(dom[i]) == y) { // si f(i) = y, i es antiimagen de y
+          antiImagen[cardinalAntiImagen++] = dom[i]; //se supone que en el dominio no hay valores repetidos
+        }
+        //antiImagen ya tiene todos los valores correspondientes pero puede tener un tamaño mayor a su cardinal
+        //(que haya espacios del array sin antiimagen). El siguiente método lo soluciona, truncando la longitud
+        antiImagen = Arrays.copyOfRange(antiImagen, 0, cardinalAntiImagen);
+        return Arrays.sort(antiImagen);
     }
 
     /*
@@ -469,13 +473,48 @@ class Entrega {
    *
    */
   static class Tema3 {
+    
+    private int algoritmoDeEuclides(int a, int b) {
+      if (b>a) { //Comprobación de que a>b, si no se cumple, los intercambia
+        int tmp = b;
+        b=a;
+        a=tmp;
+      }
+      if (b!=0) { //si b es 0 no se aplica el algoritmo para evitar dividir por 0
+        // DECLARACIONES
+        int MAX_ITERACIONES = 64;
+        int[] r = new int[MAX_ITERACIONES];
+        int[] q = new int[MAX_ITERACIONES];
+        int[] x = new int[MAX_ITERACIONES];
+        int[] y = new int[MAX_ITERACIONES];
+        r[0]=a;
+        r[1]=b;
+        x[0]=1;
+        x[1]=0;
+        y[0]=0;
+        y[1]=1;
+        q[1]=(a/b);
+        int i=1;
+        while (r[i]!=0) { //Aplicacion del algoritmo extendido
+          q[i] = r[i-1]/r[i];
+          r[i+1] = r[i-1]%r[i];
+          x[i+1] = x[i-1] - q[i]*x[i];
+          y[i+1] = y[i-1] - q[i]*y[i];
+          i++;
+        }
+      }
+      int mcd = (x[i-1]*a + y[i-1]*b);
+      return mcd;
+    }
+    
     /*
      * Donat `a`, `b` retornau el màxim comú divisor entre `a` i `b`.
      *
      * Podeu suposar que `a` i `b` són positius.
      */
     static int exercici1(int a, int b) {
-      return -1; // TO DO
+      int mcd = algoritmoDeEuclides(a,b);
+      return mcd;
     }
 
     /*
@@ -484,7 +523,12 @@ class Entrega {
      * Podeu suposar que `a`, `b` i `c` són positius.
      */
     static boolean exercici2(int a, int b, int c) {
-      return false; // TO DO
+      int mcd = algoritmoDeEuclides(a,b);
+      if (c % mcd == 0) { //aviso: COMPROBAR
+        return true;
+      } else {
+        return false;
+      }
     }
 
     /*
