@@ -581,30 +581,36 @@ class Entrega {
       ordreIMida[1] = 0;
       for (int i=0; i<A.length; i++) { //recorrido matriz triangular
         for (int j=0; j<=i; j++) {
-          if (i=j) {
+          if (i==j) {
             ordreIMida[1] += 2*A[i,j] //diagonal -> lazo, cuenta doble
           } else {
             ordreIMida[1] += A[i,j];
           }
         }
       }
-      return ordreIMida; // TO DO
+      return ordreIMida;
     }
 
     /*
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, digau si el graf es eulerià.
      */
     static boolean exercici2(int[][] A) { 
-      for (int i=0; i<A.length; i++) { //recorrido de matriz
+      // BÚSQUEDA DE UNA NODO DE GRADO IMPAR RECORRIENDO LA MATRIZ //
+      for (int i=0; i<A.length; i++) { //recorrido de filas de la matriz
         int grado = 0;
-        for (int j=0; j<=i; j++) {
-          if (A[i,j]==1) {
-            grado++; //hay arista, suma al grado
+        for (int j=0; j<A.length; j++) { //se fija el nodo de fila 'i' y se comprueban sus aristas
+          if (A[i,j]==1) { //si hay arista, aumenta el grado
+            if (i==j) {
+              grado += 2; // i=j -> diagonal principal -> hay lazo
+            } else {
+              grado++; //arista sin lazo, suma 1 al grado
+            }
           }
         }
-        if (grado%2 != 0) return false; //si el grado de una arista es impar, no euleriano
+        //fin de recorrido de columnas, se tiene el grado del nodo de la fila i
+        if (grado % 2 != 0) return false; //si el grado de un nodo es impar, no euleriano
       }
-      return true;
+      return true; //no se han encontrado nodos de grado impar, euleriano
       
     }
 
@@ -614,6 +620,12 @@ class Entrega {
      *
      */
     static int exercici3(int n, int d) {
+      /////////////////////////////////////////////////////// SEGURAMENTE ESTÉ MAL ////////////////
+      // el número de hijos de la raíz debe ser también d, si no, el número de vértices no es único...
+      int num = n/d;
+      int res = n + n/d + n%d; //ta mal
+      // n hojas + n/d + 1 (cada d hojas tienes un nodo interior) + raíz
+      
       return -1; // TO DO
     }
 
