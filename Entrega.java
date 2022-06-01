@@ -576,14 +576,36 @@ class Entrega {
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, retornau l'ordre i la mida del graf.
      */
     static int[] exercici1(int[][] A) {
-      return new int[]{}; // TO DO
+      int[] ordreIMida = new int[2];
+      ordreIMida[0] = A.length; //orden = num vértices = dimensión de A
+      ordreIMida[1] = 0;
+      for (int i=0; i<A.length; i++) { //recorrido matriz triangular
+        for (int j=0; j<=i; j++) {
+          if (i=j) {
+            ordreIMida[1] += 2*A[i,j] //diagonal -> lazo, cuenta doble
+          } else {
+            ordreIMida[1] += A[i,j];
+          }
+        }
+      }
+      return ordreIMida; // TO DO
     }
 
     /*
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, digau si el graf es eulerià.
      */
-    static boolean exercici2(int[][] A) {
-      return false; // TO DO
+    static boolean exercici2(int[][] A) { 
+      for (int i=0; i<A.length; i++) { //recorrido de matriz
+        int grado = 0;
+        for (int j=0; j<=i; j++) {
+          if (A[i,j]==1) {
+            grado++; //hay arista, suma al grado
+          }
+        }
+        if (grado%2 != 0) return false; //si el grado de una arista es impar, no euleriano
+      }
+      return true;
+      
     }
 
     /*
