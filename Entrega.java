@@ -620,21 +620,52 @@ class Entrega {
      *
      */
     static int exercici3(int n, int d) {
-      /////////////////////////////////////////////////////// SEGURAMENTE ESTÉ MAL ////////////////
+      
       // el número de hijos de la raíz debe ser también d, si no, el número de vértices no es único...
       int num = n/d;
-      int res = n + n/d + n%d; //ta mal
-      // n hojas + n/d + 1 (cada d hojas tienes un nodo interior) + raíz
+      int res = n + n/d + n%d;
       
-      return -1; // TO DO
+      return res; // TO DO
     }
 
     /*
      * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf conté algún cicle.
      */
-    static boolean exercici4(int[][] A) {
-      return false; // TO DO
+    static boolean exercici4(int[][] A) { //AVISO está mal, no se hace así.....
+      int[][] mat = new int[A.length][A[0].length];
+      System.arraycopy(A, 0, mat, 0, A.length);
+      int numNodos = A.length;
+      boolean ciclo = false;
+      for (int i=0; i<numNodos && !ciclo; i++) {
+        mat = productoMatricesCuadradas(mat,mat); //A^k = A^(k+1)
+        for (int i=0; i<mat.length && !ciclo; i++) { //recorrido A^(k+1)
+          for (int j=0; i<mat[0].length && !ciclo; j++) {
+            if (mat[i][j] > 1) {
+              ciclo = true;
+            }
+          }
+        }
+      }
+      return ciclo;
     }
+    
+    /*
+    Producto de matrices para ver si el número de recorridos a un nodo es único
+    Suponemos que el tamaño es adecuado porque la matriz de adyacencia es cuadrada
+    */
+    static int[][] productoMatricesCuadradas(int[][] A, int[][] B) {
+      int[][] res = new int[filas][columnas];
+      for (int i = 0; i < A.length; i++) { //recorrido filas
+        for (int j = 0; j < B[0].length; j++) { //recorrido columnas
+          for (int k = 0; k < A[0].length; k++) {
+                    // aquí se multiplica la matriz
+                    res[i][j] += a[i][k] * b[k][j];
+          }
+        }
+      }
+      return res;
+    }
+    
     /*
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
