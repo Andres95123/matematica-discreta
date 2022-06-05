@@ -631,6 +631,11 @@ class Entrega {
     /*
      * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf conté algún cicle.
      */
+    
+    /* Para resolver este ejercicio se ha usado la siguiente proposición:
+    Proposició: Sigui a^(k)_i,j l’entrada (i, j) de la matriu A^k.
+    Aleshores a^(k)_i,j és igual al nombre de recorreguts vi vj de longitud k
+    */
     static boolean exercici4(int[][] A) { //AVISO está mal, no se hace así.....
       int[][] mat = new int[A.length][A[0].length];
       System.arraycopy(A, 0, mat, 0, A.length);
