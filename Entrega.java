@@ -275,6 +275,50 @@ class Entrega {
      * Podeu soposar que `x` pertany a `a` i que `a` està ordenat de menor a major.
      */
     static boolean exercici2(int[] a, int[][] rel, int x) {
+      
+      //rel es orden parcial? x es el minimo?
+      int numElementosReflexivos = 0;
+      boolean antisimetrica = true;
+      boolean transitiva = true;
+      boolean xMin = true;
+      for (int i=0; i<a.length && antisimetrica && transitiva; i++) { //recorrido de pares de la relación
+        //si un elemento está relacionado consigo mismo, aumenta el contador
+        if ( rel[i][0] == rel[i][1] ) {
+          numElementosReflexivos++;
+        } else { // antisimetrica: a R b y b R a -> b=a. Si a=b trivial
+          //si la relación es de dos valores distintos, se mira la relación en el otro sentido
+          int valor1 = rel[i][0];
+          int valor2 = rel[i][1];
+          //para cada par de la relación se busca la relación en el otro sentido y se mira si son iguales
+          for (int j=0; j<a.length; j++) {
+            if (rel[j][0] == valor2 && rel[j][1] == valor1) {
+              antisimetrica = antisimetrica && (rel[j][0] == rel[j][1]);
+            }
+          }
+        }
+        // DUROOOOOOOOOOOOOOOOOO
+        //valor1 está relacionado con valor2, recorrer otra vez
+        for (int j=0; j<a.length; j++) { // buscamos valor3 tal que valor2 R valor3
+          if (rel[j][0] == valor2) { //rel[j][1] será el valor3 tal que valor2 R valor3
+            int valor3 = rel[j][1];
+            transitiva = false; //suponemos que no es transitiva y se busca si valor1 R valor3
+            for (int k=0; k<a.length; k++) { //fijado valor3 se mira si valor1 R valor3
+              if (rel[k][0] == valor1 && rel[k][1] == valor3) { //si valor1 R valor3 es transitiva
+                transitiva = true;
+              }
+            }
+          }
+        }
+        //comprobación del mínimo
+        if (
+        
+      }
+      //si no todos los elementos están relacionados consigo mismos, no es un orden (no reflexivo)
+      if (numElementosReflexivos!=a.length) return false;
+      if (!antisimetrica) return false; //si no una relación antisimétrica no es un orden
+      if (!transitiva) return false;
+      
+      
       return false; // TO DO
     }
 
