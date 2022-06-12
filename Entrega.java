@@ -309,14 +309,18 @@ class Entrega {
             }
           }
         }
-        //comprobación del mínimo
-        if (
-        
       }
       //si no todos los elementos están relacionados consigo mismos, no es un orden (no reflexivo)
       if (numElementosReflexivos!=a.length) return false;
       if (!antisimetrica) return false; //si no una relación antisimétrica no es un orden
       if (!transitiva) return false;
+      
+      
+      
+      // FALTA EL MÍNIMO
+      
+      
+      
       
       
       return false; // TO DO
@@ -375,13 +379,12 @@ class Entrega {
       }
       
       // COMIENZO EHXHAUSTIVIDAD
-      
       if ( Arrays.asList(imagenes).containsAll(Arrays.asList(codom)) ) {
         //si imagenes contiene todos los valores de codom -> exhaustiva (e imagenes=codom)
         // (no se usa equals porque puede haber imágenes iguales para entradas distintas)
         valor =+ SURJECTIVE;
       }
-      // FIN EXHAUSTIVIDAD
+      
       return valor;
     }
 
