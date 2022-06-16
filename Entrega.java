@@ -539,7 +539,7 @@ class Entrega {
     static boolean exercici2(int a, int b, int c) {
       int[] resAlgoritmo = algoritmoDeEuclides(a,b);
       int mcd = resAlgoritmo[3];
-      if (c % mcd == 0) { //aviso: COMPROBAR
+      if (c % mcd == 0) {
         return true;
       } else {
         return false;
