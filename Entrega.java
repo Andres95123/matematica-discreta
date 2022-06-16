@@ -684,12 +684,12 @@ class Entrega {
     Suponemos que el tamaño es adecuado porque la matriz de adyacencia es cuadrada
     */
     static int[][] productoMatricesCuadradas(int[][] A, int[][] B) {
-      int[][] res = new int[filas][columnas];
+      int[][] res = new int[A.length][A[0].length];
       for (int i = 0; i < A.length; i++) { //recorrido filas
         for (int j = 0; j < B[0].length; j++) { //recorrido columnas
           for (int k = 0; k < A[0].length; k++) {
                     // aquí se multiplica la matriz
-                    res[i][j] += a[i][k] * b[k][j];
+                    res[i][j] += A[i][k] * B[k][j];
           }
         }
       }
