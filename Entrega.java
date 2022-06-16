@@ -486,7 +486,7 @@ class Entrega {
    */
   static class Tema3 {
     
-    private int algoritmoDeEuclides(int a, int b) {
+    private static int algoritmoDeEuclides(int a, int b) {
       if (b>a) { //Comprobación de que a>b, si no se cumple, los intercambia
         int tmp = b;
         b=a;
