@@ -73,40 +73,6 @@ class Entrega {
      * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
-      
-      //Aplicamos ley de implicación y queda ∃!x. ∀y. !Q(y) || P(x)
-      //int contadorx;
-      
-      //Mirar 1 a 1 las x
-      //Mirar que todas las preposiciones con y sean ciertas
-      //Contar que solo haya 1 unica x
-      /* for(int i=0;i<universe.length;i++){
-        int contadory=0;
-        for(int j=0;j<universe.length;j++){
-      
-          boolean proposicion = !q.test(j) || p.test(i);
-          //Si la proposicion es cierta, sumamos 1 al contador
-          if (proposicion)
-          {
-            contadory++;
-          }
-      
-        }
-        
-        
-        if (contadory=universe.length){
-        contadorx++;
-        }
-        
-        
-      }
-      
-      if (contadorx == 1){
-      
-        return true;
-       */
-      
-      
       //Aplicando ley de implicación queda ∃!x. ∀y. !Q(y) || P(x)
       for (int j=0; j<universe.length; j++) { //recorrido para todo 'y'
           int contadorNumeroX = 0; //contador de veces que existe una 'x' para cada 'y'
@@ -550,7 +516,8 @@ class Entrega {
         }
       }
       int mcd = (x[i-1]*a + y[i-1]*b);
-      return mcd;
+      int[] resultado {q[i-1], x[y-1], y[i-1], mcd};
+      return resultado;
     }
     
     /*
@@ -559,7 +526,8 @@ class Entrega {
      * Podeu suposar que `a` i `b` són positius.
      */
     static int exercici1(int a, int b) {
-      int mcd = algoritmoDeEuclides(a,b);
+      int[] resAlgoritmo = algoritmoDeEuclides(a,b);
+      int mcd = resAlgoritmo[3];
       return mcd;
     }
 
@@ -569,7 +537,8 @@ class Entrega {
      * Podeu suposar que `a`, `b` i `c` són positius.
      */
     static boolean exercici2(int a, int b, int c) {
-      int mcd = algoritmoDeEuclides(a,b);
+      int[] resAlgoritmo = algoritmoDeEuclides(a,b);
+      int mcd = resAlgoritmo[3];
       if (c % mcd == 0) { //aviso: COMPROBAR
         return true;
       } else {
@@ -583,6 +552,11 @@ class Entrega {
      * Retornau l'invers sempre entre 1 i `n-1`, en cas que no existeixi retornau -1
      */
     static int exercici3(int a, int n) {
+      int valor = a%n;
+      int[] resAlgoritmo = algoritmoDeEuclides(n,a);
+      int mcd = resAlgoritmo[3];
+      if (mcd != 1)
+
       return -1; // TO DO
     }
 
@@ -714,7 +688,7 @@ class Entrega {
           }
         }
       }
-      return res;
+      return res; //TO DO
     }
     
     /*
