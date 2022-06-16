@@ -607,9 +607,9 @@ class Entrega {
       for (int i=0; i<A.length; i++) { //recorrido matriz triangular
         for (int j=0; j<=i; j++) {
           if (i==j) {
-            ordreIMida[1] += 2*A[i,j] //diagonal -> lazo, cuenta doble
+            ordreIMida[1] += 2*A[i][j]; //diagonal -> lazo, cuenta doble
           } else {
-            ordreIMida[1] += A[i,j];
+            ordreIMida[1] += A[i][j];
           }
         }
       }
@@ -624,7 +624,7 @@ class Entrega {
       for (int i=0; i<A.length; i++) { //recorrido de filas de la matriz
         int grado = 0;
         for (int j=0; j<A.length; j++) { //se fija el nodo de fila 'i' y se comprueban sus aristas
-          if (A[i,j]==1) { //si hay arista, aumenta el grado
+          if (A[i][j]==1) { //si hay arista, aumenta el grado
             if (i==j) {
               grado += 2; // i=j -> diagonal principal -> hay lazo
             } else {
