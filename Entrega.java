@@ -60,7 +60,7 @@ class Entrega {
       // Aplicando ley de implicación queda: ∀x,y. !P(x,y) || (Q(x) ^ R(y))
       for (int i=0; i<universe.length; i++) { //recorrido de 'x'
         for (int j=0; j<universe.length; j++) { //para cada 'x' fijada, recorre todas las 'y'
-          boolean proposicion = !p.test(universe[i],universe[j]) || (q.test(universe[i]) && r.test(universe[j];
+          boolean proposicion = !p.test(universe[i],universe[j]) || (q.test(universe[i]) && r.test(universe[j]));
           if (!proposicion) {
             return false;
           }
