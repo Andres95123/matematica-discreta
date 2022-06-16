@@ -9,7 +9,6 @@ import java.util.Set;
 
 /* 
  * Aquesta entrega consisteix en implementar tots els mètodes annotats amb el comentari "// TO DO".
- * asasa
  * Cada tema té el mateix pes, i l'avaluació consistirà en:
  *
  * - Principalment, el correcte funcionament de cada mètode (provant amb diferents entrades). Teniu
