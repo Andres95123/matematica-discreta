@@ -98,7 +98,7 @@ class Entrega {
     static boolean exercici3(int[][] universe) {
       int filas = universe.length;
       int columnas = universe[0].length;
-      booleano yPerteneceAXParaTodoY = true; 
+      boolean yPerteneceAXParaTodoY = true; 
       for (int i=0; i<filas; i++) { //fijamos conjunto 'y'
         boolean yPerteneceAX = false;
         for (int j=0; j<columnas; j++) { //recorremos todos los conjuntos 'x' para cada 'y'
