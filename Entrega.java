@@ -666,7 +666,7 @@ class Entrega {
       System.arraycopy(A, 0, mat, 0, A.length);
       int numNodos = A.length;
       boolean ciclo = false;
-      for (int i=0; i<numNodos && !ciclo; i++) {
+      for (int k=1; k<=numNodos && !ciclo; i++) {
         mat = productoMatricesCuadradas(mat,mat); //A^k = A^(k+1)
         for (int i=0; i<mat.length && !ciclo; i++) { //recorrido A^(k+1)
           for (int j=0; i<mat[0].length && !ciclo; j++) {
