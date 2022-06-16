@@ -553,16 +553,16 @@ class Entrega {
      */
     static int exercici3(int a, int n) {
       int valor = a%n;
-      if (valor != 0) {
+      if (valor != 0) { //si el valor es 0, no puede ser invertible
         int[] resAlgoritmo = algoritmoDeEuclides(n,a);
         int mcd = resAlgoritmo[3];
         int x = resAlgoritmo[1];
-        if (mcd == 1) {
-          return x;
+        if (mcd == 1) { //si el mcd es 1, devuelve el resultado del algoritmo
+          return x; //revisar que valor se devuelve
         }
       }
 
-      return -1; // TO DO
+      return -1;
     }
 
     /*
