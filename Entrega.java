@@ -553,9 +553,14 @@ class Entrega {
      */
     static int exercici3(int a, int n) {
       int valor = a%n;
-      int[] resAlgoritmo = algoritmoDeEuclides(n,a);
-      int mcd = resAlgoritmo[3];
-      if (mcd != 1)
+      if (valor != 0) {
+        int[] resAlgoritmo = algoritmoDeEuclides(n,a);
+        int mcd = resAlgoritmo[3];
+        int x = resAlgoritmo[1];
+        if (mcd == 1) {
+          return x;
+        }
+      }
 
       return -1; // TO DO
     }
