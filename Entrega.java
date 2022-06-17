@@ -288,15 +288,6 @@ class Entrega {
       //si x es el mínimo, x está relacionado con todos 
       if (valoresRelacionadosConX != a.getNumeroElementosDistintos) return false;
       return true;
-      
-      
-      // FALTA EL MÍNIMO
-      
-      
-      
-      
-      
-      return false; // TO DO
     }
 
     static int getNumeroElementosDistintos(int[][] matriz) {
