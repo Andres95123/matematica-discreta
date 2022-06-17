@@ -558,8 +558,11 @@ class Entrega {
       if (valor != 0) { //si el valor es 0, no puede ser invertible
         int[] resAlgoritmo = algoritmoDeEuclides(n,a);
         int mcd = resAlgoritmo[3];
-        int x = resAlgoritmo[1];
+        int x = resAlgoritmo[2];
         if (mcd == 1) { //si el mcd es 1, devuelve el resultado del algoritmo
+          while (x<0) { //convierte el resultado a positivo
+            x += n;
+          }
           return x; //revisar que valor se devuelve
         }
       }
