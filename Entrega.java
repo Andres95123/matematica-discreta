@@ -1,6 +1,7 @@
 import java.lang.AssertionError;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.IntPredicate;
@@ -53,10 +54,10 @@ class Entrega {
      * És cert que ∀x,y. P(x,y) -> Q(x) ^ R(y) ?
      */
     static boolean exercici1(
-      int[] universe,
-      BiPredicate<Integer, Integer> p,
-      Predicate<Integer> q,
-      Predicate<Integer> r) {
+        int[] universe,
+        BiPredicate<Integer, Integer> p,
+        Predicate<Integer> q,
+        Predicate<Integer> r) {
       // Aplicando ley de implicación queda: ∀x,y. !P(x,y) || (Q(x) ^ R(y))
       for (int i=0; i<universe.length; i++) { //recorrido de 'x'
         for (int j=0; j<universe.length; j++) { //para cada 'x' fijada, recorre todas las 'y'
@@ -226,8 +227,25 @@ class Entrega {
      * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
      */
     static boolean exercici1(int[] a, int[][] p) {
+        
+        Integer[] IntegerA = new Integer[a.length];
+        Integer [] IntegerP;
+        for(int i=0;i<IntegerA.length;i++){
+        IntegerA[i] = a[i];
+        }
+        
+        
       for (int i=0; i<p.length; i++) { //recorrido de conjuntos de 'p'
-        if ( !Arrays.asList(a).containsAll(Arrays.asList(p[i])) ) { 
+          
+          IntegerP = new Integer[p[i].length];
+          
+          for(int j=0;j<IntegerP.length;j++){
+          
+          IntegerP[j]=p[i][j];
+          
+          }
+          
+        if ( !Arrays.asList(IntegerA).containsAll(Arrays.asList(IntegerP)) ) { 
           return false; //si 'a' no contiene algún conjunto de 'p', devuelve falso
         } 
       }
@@ -371,7 +389,7 @@ class Entrega {
       assertThat(
           !exercici1(
               new int[] { 1, 2, 3, 4, 5 },
-              new int[][] { {1, 2}, {5}, {1, 4} }
+              new int[][] { {1, 2}, {5}, {1, 4} } // originalmente es un 5 el 2 de p
           )
       );
 
@@ -560,10 +578,11 @@ class Entrega {
         int mcd = resAlgoritmo[3];
         int x = resAlgoritmo[2];
         if (mcd == 1) { //si el mcd es 1, devuelve el resultado del algoritmo
-          while (x<0) { //convierte el resultado a positivo
-            x += n;
-          }
-          return x; //revisar que valor se devuelve
+            int indice=0;
+            while(x<0){
+                x += n;
+            }
+          return x%n; //revisar que valor se devuelve
         }
       }
 
