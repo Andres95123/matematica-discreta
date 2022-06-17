@@ -227,7 +227,7 @@ class Entrega {
      */
     static boolean exercici1(int[] a, int[][] p) {
       for (int i=0; i<p.length; i++) { //recorrido de conjuntos de 'p'
-        if (!Arrays.asList(a).containsAll(Arrays.asList(p[i])) { 
+        if ( !Arrays.asList(a).containsAll(Arrays.asList(p[i])) ) { 
           return false; //si 'a' no contiene algún conjunto de 'p', devuelve falso
         } 
       }
@@ -307,7 +307,8 @@ class Entrega {
         //antiImagen ya tiene todos los valores correspondientes pero puede tener un tamaño mayor a su cardinal
         //(que haya espacios del array sin antiimagen). El siguiente método lo soluciona, truncando la longitud
         antiImagen = Arrays.copyOfRange(antiImagen, 0, cardinalAntiImagen);
-        return Arrays.sort(antiImagen);
+        Arrays.sort(antiImagen);
+        return antiImagen;
     }
 
     /*
@@ -486,7 +487,7 @@ class Entrega {
    */
   static class Tema3 {
     
-    private static int algoritmoDeEuclides(int a, int b) {
+    private static int[] algoritmoDeEuclides(int a, int b) {
       if (b>a) { //Comprobación de que a>b, si no se cumple, los intercambia
         int tmp = b;
         b=a;
@@ -514,10 +515,11 @@ class Entrega {
           y[i+1] = y[i-1] - q[i]*y[i];
           i++;
         }
+        int mcd = (x[i-1]*a + y[i-1]*b);
+        int[] resultado = {q[i-1], x[i-1], y[i-1], mcd};
+        return resultado;
       }
-      int mcd = (x[i-1]*a + y[i-1]*b);
-      int[] resultado {q[i-1], x[y-1], y[i-1], mcd};
-      return resultado;
+      return null;
     }
     
     /*
@@ -650,7 +652,7 @@ class Entrega {
       
         int nodosInteriores = (d-n)/(1-d);
         
-        int vertices = n + nodosInteriores+1;
+        int vertices = n + nodosInteriores + 1;
 
         return (int) vertices; // TO DO
 
@@ -669,7 +671,7 @@ class Entrega {
       System.arraycopy(A, 0, mat, 0, A.length);
       int numNodos = A.length;
       boolean ciclo = false;
-      for (int k=1; k<=numNodos && !ciclo; i++) {
+      for (int k=1; k<=numNodos && !ciclo; k++) {
         mat = productoMatricesCuadradas(mat,mat); //A^k = A^(k+1)
         for (int i=0; i<mat.length && !ciclo; i++) { //recorrido A^(k+1)
           for (int j=0; i<mat[0].length && !ciclo; j++) {
@@ -691,12 +693,12 @@ class Entrega {
       for (int i = 0; i < A.length; i++) { //recorrido filas
         for (int j = 0; j < B[0].length; j++) { //recorrido columnas
           for (int k = 0; k < A[0].length; k++) {
-                    // aquí se multiplica la matriz
-                    res[i][j] += A[i][k] * B[k][j];
+            // aquí se multiplica la matriz
+            res[i][j] += A[i][k] * B[k][j];
           }
         }
       }
-      return res; //TO DO
+      return res;
     }
     
     /*
