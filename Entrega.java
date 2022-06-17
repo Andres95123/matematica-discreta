@@ -1,7 +1,6 @@
 import java.lang.AssertionError;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.IntPredicate;
@@ -68,6 +67,19 @@ class Entrega {
         }
       }
       return true; //si se llega aquí, no se ha encontrado un caso donde no se cumpla
+    }
+    
+    static boolean arrayContiene(int[] v1, int[] v2) { //todos los elementos de v1 están en v2?
+        boolean contiene = true;
+        for (int i=0; i<v2.length && contiene; i++) {
+            contiene = false;
+            int valor = v2[i];
+            for (int j=0; j<v1.length; j++) {
+                if (valor == v1[j]) contiene = true;
+            }
+        }
+        //si algún valor de v1 no está en v2 sale del bucle con contiene false
+        return contiene; 
     }
 
     /*
