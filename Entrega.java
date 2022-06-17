@@ -654,12 +654,6 @@ class Entrega {
 
         return (int) vertices; // TO DO
 
-      }
-
-      vertices += error;
-      
-      
-      return res; // TO DO
     }
 
     /*
