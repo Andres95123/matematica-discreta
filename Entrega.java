@@ -366,6 +366,7 @@ class Entrega {
         if (f.apply(dom[i]) == y) { // si f(i) = y, i es antiimagen de y
           antiImagen[cardinalAntiImagen++] = dom[i]; //se supone que en el dominio no hay valores repetidos
         }
+      }
         //antiImagen ya tiene todos los valores correspondientes pero puede tener un tamaño mayor a su cardinal
         //(que haya espacios del array sin antiimagen). El siguiente método lo soluciona, truncando la longitud
         antiImagen = Arrays.copyOfRange(antiImagen, 0, cardinalAntiImagen);
