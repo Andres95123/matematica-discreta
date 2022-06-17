@@ -245,13 +245,16 @@ class Entrega {
       int numElementosReflexivos = 0;
       boolean antisimetrica = true;
       boolean transitiva = true;
-      boolean xMin = true;
+      int valoresRelacionadosConX = 0;
+
       for (int i=0; i<a.length && antisimetrica && transitiva; i++) { //recorrido de pares de la relación
         int valor1 = rel[i][0];
         int valor2 = rel[i][1];
+        /////////////////////// PROPIEDAD TRANSITIVA ///////////////////////
         if ( rel[i][0] == rel[i][1] ) { //si un elemento está relacionado consigo mismo, aumenta el contador
           numElementosReflexivos++;
-        } else { // antisimetrica: a R b y b R a -> b=a. Si a=b trivial
+        } else { /////////////////////// PROPIEDAD ANTISIMÉTRICA ///////////////////////
+          // antisimetrica: a R b y b R a -> b=a. Si a=b trivial
           //si la relación es de dos valores distintos, se mira la relación en el otro sentido
           //para cada par de la relación se busca la relación en el otro sentido y se mira si son iguales
           for (int j=0; j<a.length; j++) {
@@ -260,7 +263,7 @@ class Entrega {
             }
           }
         }
-        // DUROOOOOOOOOOOOOOOOOO
+        /////////////////////// TRANSITIVA ///////////////////////
         //valor1 está relacionado con valor2, recorrer otra vez
         for (int j=0; j<a.length; j++) { // buscamos valor3 tal que valor2 R valor3
           if (rel[j][0] == valor2) { //rel[j][1] será el valor3 tal que valor2 R valor3
@@ -273,12 +276,18 @@ class Entrega {
             }
           }
         }
+        /////////////////////// COMPROBACIÓN MÍNIMO ///////////////////////
+        //si para algún c, x R c, x está relacionado con un elemento más
+        if (valor1 == x) valoresRelacionadosConX++; 
       }
       //si no todos los elementos están relacionados consigo mismos, no es un orden (no reflexivo)
-      if (numElementosReflexivos!=a.length) return false;
-      if (!antisimetrica) return false; //si no una relación antisimétrica no es un orden
-      if (!transitiva) return false;
-      
+      if (numElementosReflexivos!=a.getNumeroElementosDistintos) return false;
+      if (!antisimetrica) return false; //si una relación no es antisimétrica no es un orden
+      if (!transitiva) return false; //si una relación no es transitiva no es un orden
+      // De los apuntes: 'x es mínim si és el més petit: ∀a ∈ A : x ≤ a'
+      //si x es el mínimo, x está relacionado con todos 
+      if (valoresRelacionadosConX != a.getNumeroElementosDistintos) return false;
+      return true;
       
       
       // FALTA EL MÍNIMO
