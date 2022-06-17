@@ -281,12 +281,12 @@ class Entrega {
         if (valor1 == x) valoresRelacionadosConX++; 
       }
       //si no todos los elementos están relacionados consigo mismos, no es un orden (no reflexivo)
-      if (numElementosReflexivos!=getNumeroElementosDistintos(a)) return false;
+      if (numElementosReflexivos != a.length) return false;
       if (!antisimetrica) return false; //si una relación no es antisimétrica no es un orden
       if (!transitiva) return false; //si una relación no es transitiva no es un orden
       // De los apuntes: 'x es mínim si és el més petit: ∀a ∈ A : x ≤ a'
       //si x es el mínimo, x está relacionado con todos 
-      if (valoresRelacionadosConX != getNumeroElementosDistintos(a)) return false;
+      if (valoresRelacionadosConX != a.length) return false;
       return true;
     }
 
@@ -367,11 +367,11 @@ class Entrega {
           antiImagen[cardinalAntiImagen++] = dom[i]; //se supone que en el dominio no hay valores repetidos
         }
       }
-        //antiImagen ya tiene todos los valores correspondientes pero puede tener un tamaño mayor a su cardinal
-        //(que haya espacios del array sin antiimagen). El siguiente método lo soluciona, truncando la longitud
-        antiImagen = Arrays.copyOfRange(antiImagen, 0, cardinalAntiImagen);
-        Arrays.sort(antiImagen);
-        return antiImagen;
+      //antiImagen ya tiene todos los valores correspondientes pero puede tener un tamaño mayor a su cardinal
+      //(que haya espacios del array sin antiimagen). El siguiente método lo soluciona, truncando la longitud
+      antiImagen = Arrays.copyOfRange(antiImagen, 0, cardinalAntiImagen);
+      Arrays.sort(antiImagen);
+      return antiImagen;
     }
 
     /*
