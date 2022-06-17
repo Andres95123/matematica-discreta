@@ -290,6 +290,69 @@ class Entrega {
       return false; // TO DO
     }
 
+    static int getNumeroElementosDistintos(int[][] matriz) {
+
+        int[] elementosVistos = new int[matriz.length * matriz[0].length];
+        int totalElementos = 0;
+
+        if (contieneZero(matriz)) {
+
+            totalElementos++;
+
+        }
+
+        for (int i = 0; i < matriz.length; i++) {
+
+            for (int j = 0; j < matriz[0].length; j++) {
+
+                if (!enArray(matriz[i][j], elementosVistos)) {
+
+                    elementosVistos[totalElementos] = matriz[i][j];
+                    totalElementos++;
+                }
+
+            }
+
+        }
+
+        return totalElementos;
+
+    }
+
+    static boolean contieneZero(int[][] matriz) {
+
+        for (int[] array : matriz) {
+            for (int valor : array) {
+
+                if (valor == 0) {
+
+                    return true;
+
+                }
+
+            }
+        }
+
+        return false;
+
+    }
+
+    static boolean enArray(int valor, int[] array) {
+
+        for (int elemento : array) {
+
+            if (elemento == valor) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
     /*
      * Suposau que `f` és una funció amb domini `dom` i codomini `codom`.  Trobau l'antiimatge de
      * `y` (ordenau el resultat de menor a major, podeu utilitzar `Arrays.sort()`). Podeu suposar
