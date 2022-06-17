@@ -647,32 +647,12 @@ class Entrega {
     static int exercici3(int n, int d) {
       
       // el número de hijos de la raíz debe ser también d, si no, el número de vértices no es único...
-      //int num = n/d;
-      //int res = n + n/d + n%d;
-
-      double vertices = Math.round((n-1)/d) +1 + n;
-      int potencia = 1;
-      int error=1;
-
-      for(int i=0;i<n;i++){
-
-          if (i>Math.pow(d,potencia)){
-
-            potencia++;
-
-          }
-
-      }
-
       
+        int nodosInteriores = (d-n)/(1-d);
+        
+        int vertices = n + nodosInteriores+1;
 
-      if (n > Math.pow(d,potencia)){
-
-        for(int i=0;i<potencia;i++){
-
-          error += error + 2*error; 
-
-        }
+        return (int) vertices; // TO DO
 
       }
 
