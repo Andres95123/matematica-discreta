@@ -247,10 +247,9 @@ class Entrega {
       boolean transitiva = true;
       boolean xMin = true;
       for (int i=0; i<a.length && antisimetrica && transitiva; i++) { //recorrido de pares de la relación
-        //si un elemento está relacionado consigo mismo, aumenta el contador
         int valor1 = rel[i][0];
         int valor2 = rel[i][1];
-        if ( rel[i][0] == rel[i][1] ) {
+        if ( rel[i][0] == rel[i][1] ) { //si un elemento está relacionado consigo mismo, aumenta el contador
           numElementosReflexivos++;
         } else { // antisimetrica: a R b y b R a -> b=a. Si a=b trivial
           //si la relación es de dos valores distintos, se mira la relación en el otro sentido
