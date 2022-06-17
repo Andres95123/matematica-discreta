@@ -727,23 +727,28 @@ class Entrega {
     /* Para resolver este ejercicio se ha usado la siguiente proposición:
     Proposició: Sigui a^(k)_i,j l’entrada (i, j) de la matriu A^k.
     Aleshores a^(k)_i,j és igual al nombre de recorreguts vi vj de longitud k
+
+    Entonces
     */
     static boolean exercici4(int[][] A) { //AVISO está mal, no se hace así.....
-      int[][] mat = new int[A.length][A[0].length];
-      System.arraycopy(A, 0, mat, 0, A.length);
       int numNodos = A.length;
-      boolean ciclo = false;
-      for (int k=1; k<=numNodos && !ciclo; k++) {
-        mat = productoMatricesCuadradas(mat,mat); //A^k = A^(k+1)
-        for (int i=0; i<mat.length && !ciclo; i++) { //recorrido A^(k+1)
-          for (int j=0; i<mat[0].length && !ciclo; j++) {
-            if (mat[i][j] > 1) {
-              ciclo = true;
-            }
+
+     int contadorAristas = 0;
+     for (int i=0; i<A.length; i++) {
+      for (int j=0; j<A[i].length; j++) {
+        if (A[i][j] == 1) {
+          if (i == j) {
+          contadorAristas = contadorAristas + 2; //lazo, cuenta como si fuesen dos
+          // Al dividir entre 2 por el lema de las encajadas de manos contará como una arista
+          } else {
+            contadorAristas++;
           }
         }
+        
       }
-      return ciclo;
+     }
+     contadorAristas /= 2;
+     return (contadorAristas > numNodos-1);
     }
     
     /*
