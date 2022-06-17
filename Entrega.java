@@ -53,10 +53,10 @@ class Entrega {
      * És cert que ∀x,y. P(x,y) -> Q(x) ^ R(y) ?
      */
     static boolean exercici1(
-        int[] universe,
-        BiPredicate<Integer, Integer> p,
-        Predicate<Integer> q,
-        Predicate<Integer> r) {
+      int[] universe,
+      BiPredicate<Integer, Integer> p,
+      Predicate<Integer> q,
+      Predicate<Integer> r) {
       // Aplicando ley de implicación queda: ∀x,y. !P(x,y) || (Q(x) ^ R(y))
       for (int i=0; i<universe.length; i++) { //recorrido de 'x'
         for (int j=0; j<universe.length; j++) { //para cada 'x' fijada, recorre todas las 'y'
