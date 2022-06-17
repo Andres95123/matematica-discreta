@@ -281,12 +281,12 @@ class Entrega {
         if (valor1 == x) valoresRelacionadosConX++; 
       }
       //si no todos los elementos están relacionados consigo mismos, no es un orden (no reflexivo)
-      if (numElementosReflexivos!=a.getNumeroElementosDistintos) return false;
+      if (numElementosReflexivos!=getNumeroElementosDistintos(a)) return false;
       if (!antisimetrica) return false; //si una relación no es antisimétrica no es un orden
       if (!transitiva) return false; //si una relación no es transitiva no es un orden
       // De los apuntes: 'x es mínim si és el més petit: ∀a ∈ A : x ≤ a'
       //si x es el mínimo, x está relacionado con todos 
-      if (valoresRelacionadosConX != a.getNumeroElementosDistintos) return false;
+      if (valoresRelacionadosConX != getNumeroElementosDistintos(a)) return false;
       return true;
     }
 
