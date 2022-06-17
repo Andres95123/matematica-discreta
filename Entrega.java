@@ -247,7 +247,7 @@ class Entrega {
       boolean transitiva = true;
       int valoresRelacionadosConX = 0;
 
-      for (int i=0; i<a.length && antisimetrica && transitiva; i++) { //recorrido de pares de la relación
+      for (int i=0; i<rel.length && antisimetrica && transitiva; i++) { //recorrido de pares de la relación
         int valor1 = rel[i][0];
         int valor2 = rel[i][1];
         /////////////////////// PROPIEDAD TRANSITIVA ///////////////////////
@@ -265,11 +265,11 @@ class Entrega {
         }
         /////////////////////// TRANSITIVA ///////////////////////
         //valor1 está relacionado con valor2, recorrer otra vez
-        for (int j=0; j<a.length; j++) { // buscamos valor3 tal que valor2 R valor3
+        for (int j=0; j<rel.length; j++) { // buscamos valor3 tal que valor2 R valor3
           if (rel[j][0] == valor2) { //rel[j][1] será el valor3 tal que valor2 R valor3
             int valor3 = rel[j][1];
             transitiva = false; //suponemos que no es transitiva y se busca si valor1 R valor3
-            for (int k=0; k<a.length; k++) { //fijado valor3 se mira si valor1 R valor3
+            for (int k=0; k<rel.length; k++) { //fijado valor3 se mira si valor1 R valor3
               if (rel[k][0] == valor1 && rel[k][1] == valor3) { //si valor1 R valor3 es transitiva
                 transitiva = true;
               }
@@ -288,69 +288,6 @@ class Entrega {
       //si x es el mínimo, x está relacionado con todos 
       if (valoresRelacionadosConX != a.length) return false;
       return true;
-    }
-
-    static int getNumeroElementosDistintos(int[][] matriz) {
-
-        int[] elementosVistos = new int[matriz.length * matriz[0].length];
-        int totalElementos = 0;
-
-        if (contieneZero(matriz)) {
-
-            totalElementos++;
-
-        }
-
-        for (int i = 0; i < matriz.length; i++) {
-
-            for (int j = 0; j < matriz[0].length; j++) {
-
-                if (!enArray(matriz[i][j], elementosVistos)) {
-
-                    elementosVistos[totalElementos] = matriz[i][j];
-                    totalElementos++;
-                }
-
-            }
-
-        }
-
-        return totalElementos;
-
-    }
-
-    static boolean contieneZero(int[][] matriz) {
-
-        for (int[] array : matriz) {
-            for (int valor : array) {
-
-                if (valor == 0) {
-
-                    return true;
-
-                }
-
-            }
-        }
-
-        return false;
-
-    }
-
-    static boolean enArray(int valor, int[] array) {
-
-        for (int elemento : array) {
-
-            if (elemento == valor) {
-
-                return true;
-
-            }
-
-        }
-
-        return false;
-
     }
 
     /*
