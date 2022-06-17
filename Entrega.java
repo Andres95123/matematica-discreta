@@ -709,15 +709,15 @@ class Entrega {
      *
      */
     static int exercici3(int n, int d) {
-      
-      // el número de hijos de la raíz debe ser también d, si no, el número de vértices no es único...
-      
-        int nodosInteriores = (d-n)/(1-d);
-        
-        int vertices = n + nodosInteriores + 1;
-
-        return (int) vertices; // TO DO
-
+      /*Sean k el número de nodos interiores y n las hojas, sabemos que |E| = k + n + 1 
+      porque todos los nodos o son hojas, o nodos interiores, o la raíz. Aplicando encajada
+      de manos, 2|E| = h + (d+1)k + d, porque cada hoja tiene grado 1, cada nodo interior
+      tiene grado d+1 (d hijos + 1 padre) y la raíz tiene d hijos. Resolviendo el sistema
+      anterior se obtienen los nodos interiores, y con eso las aristas, entonces se tienen los nodos
+      */
+      int nodosInteriores = (d-n)/(1-d);
+      int vertices = n + nodosInteriores + 1;
+      return vertices;
     }
 
     /*
@@ -730,42 +730,27 @@ class Entrega {
 
     Entonces
     */
-    static boolean exercici4(int[][] A) { //AVISO está mal, no se hace así.....
+    static boolean exercici4(int[][] A) {
+      /*Un grafo conexo cumple que |E| >= |V| − 1. Si se añade un nodo que no provoca ciclo
+      se tiene que |E|+1 >= |V| y se sigue cumpliendo. En cambio, si se añade un nodo
+      que provoca ciclo, añadirá una arista pero no un nodo, y por tanto, siendo |E|
+      el nuevo número de aristas, se tendrá que |E| > |V| − 1 */
       int numNodos = A.length;
-
-     int contadorAristas = 0;
-     for (int i=0; i<A.length; i++) {
-      for (int j=0; j<A[i].length; j++) {
-        if (A[i][j] == 1) {
-          if (i == j) {
-          contadorAristas = contadorAristas + 2; //lazo, cuenta como si fuesen dos
-          // Al dividir entre 2 por el lema de las encajadas de manos contará como una arista
-          } else {
+      int contadorAristas = 0;
+      for (int i=0; i<A.length; i++) {
+        for (int j=0; j<A[i].length; j++) {
+          if (A[i][j] == 1) {
+            if (i == j) {
+            contadorAristas = contadorAristas + 2; //lazo, cuenta como si fuesen dos
+            // Al dividir entre 2 por el lema de las encajadas de manos contará como una arista
+            } else {
             contadorAristas++;
-          }
-        }
-        
-      }
-     }
-     contadorAristas /= 2;
-     return (contadorAristas > numNodos-1);
-    }
-    
-    /*
-    Producto de matrices para ver si el número de recorridos a un nodo es único
-    Suponemos que el tamaño es adecuado porque la matriz de adyacencia es cuadrada
-    */
-    static int[][] productoMatricesCuadradas(int[][] A, int[][] B) {
-      int[][] res = new int[A.length][A[0].length];
-      for (int i = 0; i < A.length; i++) { //recorrido filas
-        for (int j = 0; j < B[0].length; j++) { //recorrido columnas
-          for (int k = 0; k < A[0].length; k++) {
-            // aquí se multiplica la matriz
-            res[i][j] += A[i][k] * B[k][j];
+            }
           }
         }
       }
-      return res;
+      contadorAristas /= 2;
+      return (contadorAristas > numNodos-1);
     }
     
     /*
