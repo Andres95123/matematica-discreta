@@ -90,7 +90,7 @@ class Entrega {
       for (int j=0; j<universe.length; j++) { //recorrido para todo 'y'
           int contadorNumeroX = 0; //contador de veces que existe una 'x' para cada 'y'
           for (int i=0; i<universe.length; i++) { //recorrido para todo 'x'
-            if (!q.test(j) || p.test(i)) { 
+            if (!q.test(universe[j]) || p.test(universe[i])) { 
               contadorNumeroX++; //si es verdad, existe una 'x' más para esa 'y'
             }
           }
