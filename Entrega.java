@@ -113,10 +113,10 @@ class Entrega {
       boolean xContieneTodoY = false;
       for (int i=0; i<universe.length && !xContieneTodoY; i++) {
         boolean xContieneY = true;
-        for (int j=0; j<universe.length; j++) {
+        for (int j=0; j<universe.length; j++) { 
           xContieneY = xContieneY && Tema1.arrayContiene(universe[i], universe[j]);
         }
-        if (xContieneY) xContieneTodoY = true;
+        if (xContieneY) xContieneTodoY = true; //Si un x contiene todos los y, xContieneY = true
       }
       return (!xContieneTodoY);
     }
@@ -290,7 +290,7 @@ class Entrega {
       for (int i=0; i<rel.length && antisimetrica && transitiva; i++) { //recorrido de pares de la relación
         int valor1 = rel[i][0];
         int valor2 = rel[i][1];
-        /////////////////////// PROPIEDAD TRANSITIVA ///////////////////////
+        /////////////////////// PROPIEDAD REFLEXIVA ///////////////////////
         if ( rel[i][0] == rel[i][1] ) { //si un elemento está relacionado consigo mismo, aumenta el contador
           numElementosReflexivos++;
         } else { /////////////////////// PROPIEDAD ANTISIMÉTRICA ///////////////////////
@@ -568,7 +568,7 @@ class Entrega {
      * Podeu suposar que `a` i `b` són positius.
      */
     static int exercici1(int a, int b) {
-      int[] resAlgoritmo = algoritmoDeEuclides(a,b);
+      int[] resAlgoritmo = algoritmoDeEuclides(a,b); //Aplicamos el algoritmo de euclides, mcd = elemento 3
       int mcd = resAlgoritmo[3];
       return mcd;
     }
@@ -581,7 +581,7 @@ class Entrega {
     static boolean exercici2(int a, int b, int c) {
       int[] resAlgoritmo = algoritmoDeEuclides(a,b);
       int mcd = resAlgoritmo[3];
-      if (c % mcd == 0) {
+      if (c % mcd == 0) { //ax + by = c, tiene solución si mcd(a,b) | c
         return true;
       } else {
         return false;
@@ -604,7 +604,7 @@ class Entrega {
             while(x<0){
                 x += n;
             }
-          return x%n; //revisar que valor se devuelve
+          return x%n;
         }
       }
 
@@ -650,10 +650,10 @@ class Entrega {
       int[] ordreIMida = new int[2];
       ordreIMida[0] = A.length; //orden = num vértices = dimensión de A
       ordreIMida[1] = 0;
-      for (int i=0; i<A.length; i++) { //recorrido matriz triangular
+      for (int i=0; i<A.length; i++) { //recorrido matriz
         for (int j=0; j<=i; j++) {
           if (i==j) {
-            ordreIMida[1] += 2*A[i][j]; //diagonal -> lazo, cuenta doble
+            ordreIMida[1] += 2*A[i][j]; //diagonal -> lazo, cuenta doble para el grado
           } else {
             ordreIMida[1] += A[i][j];
           }
