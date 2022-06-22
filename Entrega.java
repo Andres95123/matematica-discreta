@@ -82,6 +82,16 @@ class Entrega {
         return contiene; 
     }
 
+    static boolean arrayContieneAlguno(int[] v1, int[] v2) { //algún elemento de v1 están en v2?
+        for (int i=0; i<v2.length && contiene; i++) {
+            int valor = v2[i];
+            for (int j=0; j<v1.length; j++) {
+                if (valor == v1[j]) return true;
+            }
+        }
+        return false; 
+    }
+
     /*
      * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
      */
