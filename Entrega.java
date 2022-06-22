@@ -82,16 +82,6 @@ class Entrega {
         return contiene; 
     }
 
-    static boolean arrayContieneAlguno(int[] v1, int[] v2) { //algún elemento de v1 están en v2?
-        for (int i=0; i<v2.length && contiene; i++) {
-            int valor = v2[i];
-            for (int j=0; j<v1.length; j++) {
-                if (valor == v1[j]) return true;
-            }
-        }
-        return false; 
-    }
-
     /*
      * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
      */
@@ -250,30 +240,41 @@ class Entrega {
      */
     static boolean exercici1(int[] a, int[][] p) {
         
-        Integer[] IntegerA = new Integer[a.length];
-        Integer [] IntegerP;
-        for(int i=0;i<IntegerA.length;i++){
-        IntegerA[i] = a[i];
+       for(int i=0;i<p.length;i++){
+       
+           for(int j=i;j<p.length;j++){
+               
+               if (i!=j && arrayContieneAlguno(p[i],p[j])){
+               
+                   return false; //Intersección no nula
+               
+               }           
+           }
+       
+       
+       }
+       
+        for (int i=0; i<p.length; i++) { //recorrido de conjuntos de 'p'
+          if (!Tema1.arrayContiene(a, p[i])) { 
+            return false; //si 'a' no contiene algún conjunto de 'p', devuelve falso
+          } 
         }
-        
-        
-      for (int i=0; i<p.length; i++) { //recorrido de conjuntos de 'p'
-          
-          IntegerP = new Integer[p[i].length];
-          
-          for(int j=0;j<IntegerP.length;j++){
-          
-          IntegerP[j]=p[i][j];
-          
-          }
-          
-        if ( !Arrays.asList(IntegerA).containsAll(Arrays.asList(IntegerP)) ) { 
-          return false; //si 'a' no contiene algún conjunto de 'p', devuelve falso
-        } 
-      }
-      return true; //llega aquí si 'a' contiene todo conjunto de 'p'
+         return true; //llega aquí si 'a' contiene todo conjunto de 'p'
+       
     }
 
+    static boolean arrayContieneAlguno(int[] v1, int[] v2) { //algún elemento de v1 están en v2?
+        for (int i=0; i<v2.length; i++) {
+            int valor = v2[i];
+            for (int j=0; j<v1.length; j++) {
+                if (valor == v1[j]) return true;
+            }
+        }
+        
+        return false; 
+    }
+    
+    
     /*
      * Comprovau si la relació `rel` definida sobre `a` és un ordre parcial i que `x` n'és el mínim.
      *
@@ -362,12 +363,12 @@ class Entrega {
      * utilitzar les constants definides a continuació:
      */
     static final int NOTHING_SPECIAL = 0;
-    static final int INJECTIVE = 1;
+    static final int INJECTIVE = 1; //Funccionaaaaaa
     static final int SURJECTIVE = 2;
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
 
     static int exercici4(int[] dom, int[] codom, Function<Integer, Integer> f) {
-      int[] imagenes = new int[codom.length];
+      int[] imagenes = new int[dom.length];
       for (int i=0; i<dom.length; i++) { //crea el conjunto imagen de dom
         imagenes[i] = f.apply(dom[i]);
       }
@@ -385,10 +386,10 @@ class Entrega {
       }
       
       // COMIENZO EHXHAUSTIVIDAD
-      if ( Arrays.asList(imagenes).containsAll(Arrays.asList(codom)) ) {
+      if (Tema1.arrayContiene(imagenes, codom)) {
         //si imagenes contiene todos los valores de codom -> exhaustiva (e imagenes=codom)
         // (no se usa equals porque puede haber imágenes iguales para entradas distintas)
-        valor =+ SURJECTIVE;
+        valor += SURJECTIVE;
       }
       
       return valor;
@@ -709,7 +710,6 @@ class Entrega {
     /* Para resolver este ejercicio se ha usado la siguiente proposición:
     Proposició: Sigui a^(k)_i,j l’entrada (i, j) de la matriu A^k.
     Aleshores a^(k)_i,j és igual al nombre de recorreguts vi vj de longitud k
-
     Entonces
     */
     static boolean exercici4(int[][] A) {
@@ -798,5 +798,3 @@ class Entrega {
 }
 
 // vim: set textwidth=100 shiftwidth=2 expandtab :
-
-//si
