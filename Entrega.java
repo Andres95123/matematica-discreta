@@ -70,6 +70,7 @@ class Entrega {
     }
     
     static boolean arrayContiene(int[] v1, int[] v2) { //todos los elementos de v1 están en v2?
+        if (v2.length != 0 && v1.length == 0) return false;
         boolean contiene = true;
         for (int i=0; i<v2.length && contiene; i++) {
             contiene = false;
@@ -109,18 +110,15 @@ class Entrega {
      * que cada un d'ells està ordenat de menor a major.
      */
     static boolean exercici3(int[][] universe) {
-      int filas = universe.length;
-      int columnas = universe[0].length;
-      boolean yPerteneceAXParaTodoY = true; 
-      for (int i=0; i<filas; i++) { //fijamos conjunto 'y'
-        boolean yPerteneceAX = false;
-        for (int j=0; j<columnas; j++) { //recorremos todos los conjuntos 'x' para cada 'y'
-          //miramos para el conjunto 'y' fijado si y contiene a alguno de todos los 'x'
-           yPerteneceAX = yPerteneceAX || Arrays.asList(universe[i]).containsAll(Arrays.asList(universe[j]));
+      boolean xContieneTodoY = false;
+      for (int i=0; i<universe.length && !xContieneTodoY; i++) {
+        boolean xContieneY = true;
+        for (int j=0; j<universe.length; j++) {
+          xContieneY = xContieneY && Tema1.arrayContiene(universe[i], universe[j]);
         }
-        if (!yPerteneceAX) yPerteneceAXParaTodoY = false; //si algún 'y' no pertenece a ningún 'x'
+        if (xContieneY) xContieneTodoY = true;
       }
-      return !yPerteneceAXParaTodoY;
+      return (!xContieneTodoY);
     }
 
     /*
@@ -239,31 +237,32 @@ class Entrega {
      * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
      */
     static boolean exercici1(int[] a, int[][] p) {
-        
-       for(int i=0;i<p.length;i++){
-       
-           for(int j=i;j<p.length;j++){
-               
-               if (i!=j && arrayContieneAlguno(p[i],p[j])){
-               
-                   return false; //Intersección no nula
-               
-               }           
-           }
-       
-       
-       }
-       
-        for (int i=0; i<p.length; i++) { //recorrido de conjuntos de 'p'
-          if (!Tema1.arrayContiene(a, p[i])) { 
-            return false; //si 'a' no contiene algún conjunto de 'p', devuelve falso
-          } 
+      for(int i=0;i<p.length;i++){
+        for(int j=i;j<p.length;j++){
+          if (i!=j && arrayContieneAlgunElemento(p[i],p[j])) {
+            return false; //Intersección no nula
+          }
         }
-         return true; //llega aquí si 'a' contiene todo conjunto de 'p'
-       
+      }
+
+      // la intersección no es nula si el programa llega aquí
+      //se mira si todo elemento de 'p' está en 'a'
+
+      for (int k=0; k<a.length; k++) { //recorrido de elementos de A
+        boolean elementoDeAEncontrado = false;
+        for (int i=0; i<p.length; i++) { //recorrido de los conjuntos de P
+          for (int j=0; j<p[i].length; j++) { //recorrido de cada conjunto
+            if (a[k] == p[i][j]) { //si el elemento del conjunto A está en P, encontrado
+              elementoDeAEncontrado = true;
+            }
+          }
+        }
+        if (!elementoDeAEncontrado) return false; //si algún elemento de A no está en P, no es partición
+      }
+      return true; //llega aquí si 'a' contiene todo conjunto de 'p'
     }
 
-    static boolean arrayContieneAlguno(int[] v1, int[] v2) { //algún elemento de v1 están en v2?
+    static boolean arrayContieneAlgunElemento(int[] v1, int[] v2) { //algún elemento de v1 están en v2?
         for (int i=0; i<v2.length; i++) {
             int valor = v2[i];
             for (int j=0; j<v1.length; j++) {
@@ -363,7 +362,7 @@ class Entrega {
      * utilitzar les constants definides a continuació:
      */
     static final int NOTHING_SPECIAL = 0;
-    static final int INJECTIVE = 1; //Funccionaaaaaa
+    static final int INJECTIVE = 1;
     static final int SURJECTIVE = 2;
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
 
